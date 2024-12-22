@@ -1,8 +1,10 @@
 // Initialize fullPage.js
 new fullpage('#fullpage', {
-  autoScrolling: true,
-  navigation: true,
-  normalScrollElements: '#map', // Ensure map interactions work smoothly
+  autoScrolling: true, // Enables smooth auto-scrolling
+  navigation: true,    // Adds navigation dots
+  scrollingSpeed: 700, // Adjust scrolling speed
+  fitToSection: true,  // Ensures sections fit the viewport
+  normalScrollElements: '#map', // Allow interactions within the map
 });
 
 // Initialize the map
@@ -13,22 +15,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors',
 }).addTo(map);
 
-// Country data (translated into English)
-const countryData = {
-  "Finland": 78.4,
-  "Spain": 3.7,
-  "Sweden": 3.6,
-  "Greece": 2.4,
-  "Norway": 2.1,
-  "Poland": 1.8,
-  "Netherlands": 1.5,
-  "France": 1.2,
-  "Estonia": 1.2,
-  "Croatia": 0.9,
-  "Others": 3.4,
-};
-
-// Define GeoJSON for the countries
+// Use the GeoJSON data and viewers' percentages
 L.geoJSON(europeGeoJSON, {
   style: feature => ({
     color: 'pink',
