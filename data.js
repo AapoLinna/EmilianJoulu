@@ -1,19 +1,4 @@
-// Initialize fullPage.js
-new fullpage('#fullpage', {
-  autoScrolling: true,
-  navigation: true,
-  normalScrollElements: '#map', // Ensure map interactions work smoothly
-});
-
-// Initialize the map
-const map = L.map('map').setView([54.526, 15.2551], 4); // Centered on Europe
-
-// Add a tile layer (background)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors',
-}).addTo(map);
-
-// Country data (translated into English)
+// Country percentages
 const countryData = {
   "Finland": 78.4,
   "Spain": 3.7,
@@ -28,31 +13,26 @@ const countryData = {
   "Others": 3.4,
 };
 
-// Define GeoJSON for the countries
-L.geoJSON(europeGeoJSON, {
-  style: feature => ({
-    color: 'pink',
-    weight: 1,
-    fillOpacity: 0.8,
-  }),
-  onEachFeature: (feature, layer) => {
-    const countryName = feature.properties.name;
-    const viewersPercentage = countryData[countryName] || 0;
-
-    // Add tooltip for each country
-    layer.bindTooltip(`${countryName}: ${viewersPercentage}% viewers`);
-
-    // Highlight effect on hover
-    layer.on('mouseover', () => {
-      layer.setStyle({
-        fillOpacity: 1,
-      });
-    });
-
-    layer.on('mouseout', () => {
-      layer.setStyle({
-        fillOpacity: 0.8,
-      });
-    });
-  },
-}).addTo(map);
+// GeoJSON data for Europe (simplified example)
+const europeGeoJSON = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Finland" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[24.0, 60.0], [25.0, 60.0], [25.0, 61.0], [24.0, 61.0], [24.0, 60.0]]] // Simplified
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Spain" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0.0, 40.0], [1.0, 40.0], [1.0, 41.0], [0.0, 41.0], [0.0, 40.0]]] // Simplified
+      }
+    }
+    // Add more countries here
+  ]
+};
