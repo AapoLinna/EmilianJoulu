@@ -11,12 +11,14 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Full viewport height */
-  background-color: #000; /* Black background to contrast images */
+  background-color: #000; /* Black background for contrast */
 }
 
-/* Images styling */
+/* SVG Images Styling */
 .section img {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-height: 100vh; /* Ensure the SVG fits the viewport */
+  object-fit: contain; /* Preserve aspect ratio */
+  display: block;
+  margin: auto;
 }
