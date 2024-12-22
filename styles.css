@@ -1,35 +1,37 @@
-/* Reset and Base Styles */
-html, body {
+/* Global settings for smooth scrolling */
+html {
+  scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
+body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent unwanted scrolling outside fullPage.js */
-  background-color: #000; /* Match the site's theme */
+  background-color: #000; /* Black background for contrast */
+  padding-top: env(safe-area-inset-top); /* Adjust for iPhone status bar */
 }
 
 /* Full-page sections */
 .section {
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full height for desktop */
+  width: 100%;
   display: flex;
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  background-color: #000; /* Default section background color */
-  overflow: hidden; /* Prevent content overflow */
+  justify-content: center;
+  align-items: center;
+  background-color: #000; /* Black background to prevent visible gaps */
 }
 
-/* SVG Images */
+@supports (height: 100svh) {
+  .section {
+    height: 100svh; /* Full height for mobile safe areas */
+  }
+}
+
+/* Image styles */
 img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Maintain image aspect ratio */
-}
-
-/* Navigation Dots */
-.fp-nav {
-  z-index: 10; /* Ensure navigation dots are above all content */
-}
-
-.fp-section {
-  transition: transform 0.7s ease-in-out; /* Smooth section transitions */
+  object-fit: contain; /* Preserve aspect ratio */
+  display: block;
+  margin: auto;
 }
