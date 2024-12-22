@@ -1,37 +1,37 @@
 /* Global settings for smooth scrolling */
 html {
-  scroll-behavior: smooth; /* Enables smooth scrolling */
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #000; /* Black background for contrast */
+  background-color: #000; /* Match the image background color */
   padding-top: env(safe-area-inset-top); /* Adjust for iPhone status bar */
 }
 
 /* Full-page sections */
 .section {
-  height: 100vh; /* Full height for desktop */
+  height: 100vh; /* Full viewport height */
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000; /* Black background to prevent visible gaps */
+  background-color: #000; /* Black background for contrast */
+  overflow: hidden; /* Prevent scrolling within sections */
 }
 
 @supports (height: 100svh) {
   .section {
-    height: 100svh; /* Full height for mobile safe areas */
+    height: 100svh; /* Full height including safe areas for mobile devices */
   }
 }
 
-/* Image styles */
+/* Image styles for full fit */
 img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Preserve aspect ratio */
+  width: 100%; /* Stretch the width to fit the container */
+  height: 100%; /* Stretch the height to fit the container */
+  object-fit: cover; /* Ensures the image covers the entire container */
   display: block;
-  margin: auto;
 }
